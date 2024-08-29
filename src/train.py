@@ -37,5 +37,4 @@ def train(env, settings:Settings):
         settings.episodes -= 1
         settings.eps_decay()
 
-    
-    print("DONE")
+    interaction.save_model(f"./saved_models/final_model.h5") 
