@@ -2,12 +2,15 @@ from src.training_settings import Settings
 from src.model_interaction import ModelInteraction
 import time
 
+#Add some way to automatically load the previous model
 def train(env, settings:Settings):
     action_space = env.action_space.n
     observation_space = env.observation_space.shape[0]
 
     latest_timestamp = time.time()
     interaction = ModelInteraction(env, settings, observation_space, action_space)
+
+    total_episodes = settings.episodes
 
     while settings.episodes != 0: 
         state, info = env.reset()
@@ -23,7 +26,7 @@ def train(env, settings:Settings):
             interaction.train()
 
 
-        print(f"Episode {i+1}: {current_reward} reward")
+        print(f"Episode {total_episodes - settings.episodes}: {current_reward} reward")
         #Update target after a certain period
         #Also save current settings?
         #Find a way to check for the latest model + settings to load in the next time that you want to run?
