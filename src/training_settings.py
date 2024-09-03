@@ -5,6 +5,7 @@ import json
 class Settings:
     def __init__(self, episodes, epsilon, ep_decay, gamma, lr, buffer_size, batch_size, test_render=True, only_test=False):
         self.episodes = episodes
+        self.original_episodes = episodes
         self.epsilon = epsilon
         self.ep_decay = ep_decay
         self.gamma = gamma
@@ -31,6 +32,7 @@ class Settings:
         
     def save_settings(self, file_path):
         all_settings = {"episodes":self.episodes, 
+                        "original_episodes":self.original_episodes,
                         "epsilon":self.epsilon, 
                         "ep_decay":self.ep_decay,
                         "gamma":self.gamma, 
@@ -48,6 +50,7 @@ class Settings:
             all_settings = json.load(f)
 
         self.episodes = all_settings["episodes"]
+        self.original_episodes = all_settings["original_episodes"]
         self.epsilon = all_settings["epsilon"]
         self.ep_decay = all_settings["ep_decay"]
         self.gamma = all_settings["gamma"]
