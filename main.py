@@ -3,7 +3,6 @@ from src.train import train
 from src.test import test
 from src.training_settings import Settings
 
-#Include something for if they want to continue or reset
 #Something so that if the training is good enough, then it will just stop?
 
 def main():
