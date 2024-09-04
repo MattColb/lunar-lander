@@ -11,7 +11,7 @@ def train(env, settings:Settings):
     latest_timestamp = time.time()
     interaction = ModelInteraction(env, settings, observation_space, action_space)
     if settings.latest_model != None:
-        interaction.load_model(settings.latest_model)
+        interaction.load_model(f"./saved_models/{settings.latest_model}")
 
     total_episodes = settings.episodes
 
