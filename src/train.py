@@ -2,7 +2,6 @@ from src.training_settings import Settings
 from src.model_interaction import ModelInteraction
 import time
 
-#Implement loading the previous model
 
 def train(env, settings:Settings):
     action_space = env.action_space.n
@@ -12,8 +11,6 @@ def train(env, settings:Settings):
     interaction = ModelInteraction(env, settings, observation_space, action_space)
     if settings.latest_model != None:
         interaction.load_model(f"./saved_models/{settings.latest_model}")
-
-    total_episodes = settings.episodes
 
     while settings.episodes != 0: 
         state, info = env.reset()

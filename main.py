@@ -11,7 +11,7 @@ def main():
     settings = Settings(episodes=1000, epsilon=1, ep_decay=.99, gamma=.99, lr=.001, 
                         buffer_size=1000, batch_size=64, test_render=True, 
                         only_test=False, use_previous=True)
-    if settings.only_test == False:
+    if settings.only_test == False and settings.latest_model != "final_model.h5":
         train(env, settings)
     test(env, settings)
 
