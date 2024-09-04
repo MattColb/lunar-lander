@@ -3,7 +3,9 @@ import time
 import json
 
 class Settings:
-    def __init__(self, episodes, epsilon, ep_decay, gamma, lr, buffer_size, batch_size, test_render=True, only_test=False, use_previous=True):
+    def __init__(self, episodes, epsilon, ep_decay, gamma, lr, buffer_size, 
+                 batch_size, test_render=True, only_test=False, use_previous=True, 
+                 checkpoint_seconds=600):
         self.episodes = episodes
         self.original_episodes = episodes
         self.epsilon = epsilon
@@ -14,6 +16,7 @@ class Settings:
         self.batch_size = batch_size
         self.test_render = test_render
         self.only_test = only_test
+        self.checkpoint_seconds = checkpoint_seconds
         self.latest_settings = None
         self.latest_model = None
         if use_previous == False:
@@ -50,7 +53,8 @@ class Settings:
                         "buffer_size":self.buffer_size, 
                         "batch_size":self.batch_size,
                         "test_render":self.test_render, 
-                        "only_test":self.only_test}
+                        "only_test":self.only_test,
+                        "checkpoint_seconds":self.checkpoint_seconds}
         
         with open(file_path, "w") as f:
             json.dump(all_settings, f)
@@ -69,6 +73,7 @@ class Settings:
         self.batch_size = all_settings["batch_size"]
         self.test_render = all_settings["test_render"]
         self.only_test = all_settings["only_test"]
+        self.checkpoint_seconds = all_settings["checkpoint_seconds"]
 
     def get_latest_settings(self):
         files = os.listdir("./saved_settings")
