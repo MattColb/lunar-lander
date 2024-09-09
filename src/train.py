@@ -31,6 +31,7 @@ def train(env, settings:Settings):
         #Find a way to check for the latest model + settings to load in the next time that you want to run?
         #Saves model every 10 minutes
         if time.time() - latest_timestamp >= settings.checkpoint_seconds:
+            #Save a video/gif of the latest run? 
             interaction.update_target_model()
             time_format = time.strftime("%Y-%m-%d_%H-%M-%S")
             interaction.save_model(f"./saved_models/{time_format}.h5")

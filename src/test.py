@@ -6,7 +6,7 @@ def test(env, settings):
     observation_space = env.observation_space.shape[0]
 
     interaction = ModelInteraction(env, settings, observation_space, action_space)
-    interaction.load_model("./saved_models/final_model.h5")
+    interaction.load_model(f"./saved_models/{settings.latest_model}")
 
     for i in range(10):
         total_reward = 0
